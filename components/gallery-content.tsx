@@ -8,6 +8,7 @@ import { EventGrouping } from './event-grouping';
 import { SemanticSearch } from './semantic-search';
 import { CollageGenerator } from './collage-generator';
 import { ImageEnhancement } from './image-enhancement';
+import { FacialIdentification } from './facial-identification';
 
 interface GalleryContentProps {
   activeTab: string;
@@ -140,6 +141,24 @@ export function GalleryContent({
             </div>
           ) : (
             <ImageEnhancement images={images} onImageDelete={onImageDelete} />
+          )}
+        </div>
+      )}
+
+      {activeTab === 'identify' && (
+        <div className="space-y-6">
+          <div>
+            <h2 className="text-2xl font-bold mb-2">Identify Person in Your Photos</h2>
+            <p className="text-muted-foreground">
+              Upload a selfie or photo to find all matching images from your gallery
+            </p>
+          </div>
+          {images.length === 0 ? (
+            <div className="text-center py-12 border-2 border-dashed border-muted rounded-lg">
+              <p className="text-muted-foreground mb-4">Upload photos to use facial identification</p>
+            </div>
+          ) : (
+            <FacialIdentification images={images} onImageDelete={onImageDelete} />
           )}
         </div>
       )}

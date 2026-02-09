@@ -25,6 +25,12 @@ const menuItems = [
     description: 'Add new images',
   },
   {
+    id: 'identify',
+    label: 'Identify Person',
+    icon: Search,
+    description: 'Find your photos',
+  },
+  {
     id: 'faces',
     label: 'Face Detection',
     icon: Users,
@@ -80,12 +86,12 @@ export function Sidebar({
 
       {/* Sidebar */}
       <aside
-        className={`fixed left-0 top-0 h-screen w-64 bg-card border-r border-muted transition-transform duration-300 z-40 overflow-y-auto ${
+        className={`fixed left-0 top-0 h-screen w-64 bg-card border-r border-muted transition-transform duration-300 z-40 flex flex-col ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         } md:relative md:translate-x-0`}
       >
-        {/* Sidebar Header */}
-        <div className="sticky top-0 bg-card border-b border-muted p-4 sm:p-6">
+        {/* Sidebar Header - Fixed */}
+        <div className="border-b border-muted p-4 sm:p-6 flex-shrink-0">
           <div className="flex items-center gap-3 mb-6">
             <div className="rounded-lg bg-gradient-to-br from-primary to-secondary p-2">
               <Sparkles className="h-5 w-5 text-primary-foreground" />
@@ -109,8 +115,8 @@ export function Sidebar({
           </div>
         </div>
 
-        {/* Navigation Menu */}
-        <nav className="p-4 space-y-2">
+        {/* Navigation Menu - Scrollable */}
+        <nav className="flex-1 overflow-y-auto p-4 space-y-2">
           {menuItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeTab === item.id;
@@ -145,8 +151,8 @@ export function Sidebar({
           })}
         </nav>
 
-        {/* Footer */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-muted bg-card">
+        {/* Footer - Fixed */}
+        <div className="border-t border-muted p-4 bg-card flex-shrink-0">
           <p className="text-xs text-muted-foreground text-center">
             AI SmartGallery v1.0
           </p>
