@@ -224,10 +224,58 @@ export function createCollage(
 // Simulate image upscaling
 export function upscaleImage(imageId: string): Promise<string> {
   return new Promise((resolve) => {
+  setTimeout(() => {
+  // In a real app, this would call an upscaling API
+  resolve(`upscaled-${imageId}`);
+  }, 1000);
+  });
+}
+
+export function denoise(imageId: string): Promise<string> {
+  return new Promise((resolve) => {
     setTimeout(() => {
-      // In a real app, this would call an upscaling API
-      resolve(`upscaled-${imageId}`);
+      resolve(`denoised-${imageId}`);
+    }, 1200);
+  });
+}
+
+export function adjustBrightness(imageId: string, level: number): Promise<string> {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(`brightness-${imageId}-${level}`);
+    }, 800);
+  });
+}
+
+export function adjustContrast(imageId: string, level: number): Promise<string> {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(`contrast-${imageId}-${level}`);
+    }, 800);
+  });
+}
+
+export function adjustSaturation(imageId: string, level: number): Promise<string> {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(`saturation-${imageId}-${level}`);
+    }, 800);
+  });
+}
+
+export function removeRed(imageId: string): Promise<string> {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(`red-removed-${imageId}`);
     }, 1000);
+  });
+}
+
+export function autoCorrect(imageId: string): Promise<string> {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(`auto-corrected-${imageId}`);
+    }, 1500);
   });
 }
 
