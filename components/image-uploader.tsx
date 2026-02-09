@@ -6,6 +6,7 @@ import React from "react"
 import { useState, useRef } from 'react';
 import { Cloud, Upload, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useToast } from './toast-provider';
 import { GalleryImage, detectFaces, generateImageDescription, generateEmbedding } from '@/lib/gallery-utils';
 
 interface ImageUploaderProps {
@@ -17,6 +18,7 @@ export function ImageUploader({ onImagesUpload, disabled = false }: ImageUploade
   const [isDragging, setIsDragging] = useState(false);
   const [uploading, setUploading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const { addToast } = useToast();
 
   const handleDragOver = (e: React.DragEvent) => {
     e.preventDefault();
@@ -59,6 +61,11 @@ export function ImageUploader({ onImagesUpload, disabled = false }: ImageUploade
         if (newImages.length === Math.min(files.length, Object.keys(files).length)) {
           onImagesUpload(newImages);
           setUploading(false);
+          addToast(
+            'success',
+            'Upload Successful!',
+            `${newImages.length} image${newImages.length !== 1 ? 's' : ''} added to gallery`
+          );
         }
       };
 
